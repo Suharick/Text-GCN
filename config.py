@@ -1,6 +1,4 @@
 import importlib
-if importlib.util.find_spec('comet_ml'):
-    from comet_ml import Experiment
 from utils import get_host, get_user
 
 import argparse
@@ -43,8 +41,8 @@ elif 'ag' in dataset:
     num_labels = 4
 elif 'r8' in dataset:
     num_labels = 8
-else:
-    num_labels = 5
+
+num_labels = 5
 
 parser.add_argument('--dataset', default=dataset)
 parser.add_argument('--random_seed', default=3)
@@ -72,6 +70,7 @@ if model == 'text_gcn':
         'dropout={},class_weights={}'.format(
         pred_type, node_embd_type, num_layers, "_".join([str(i) for i in layer_dim_list]), 'relu', dropout, class_weights
     )
+    print(s)
     model_params = {
         'pred_type': pred_type,
         'node_embd':  node_embd_type,
