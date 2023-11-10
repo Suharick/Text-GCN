@@ -14,7 +14,7 @@ def clean_data(dataset):
         old_name = dataset
         if "no_hashtag" in dataset:
             dataset = '_'.join(dataset.split('_')[:-2])
-        with open(join(get_data_path(), 'corpus', dataset + '_sentences.txt')) as f:
+        with open(join(get_data_path(), 'corpus', dataset + '_sentences.txt'), encoding='utf-8') as f:
             for line in f.readlines():
                 docs_list.append(line.strip())
         dataset = old_name
@@ -26,7 +26,7 @@ def clean_data(dataset):
                 word_counts[word] += 1
         clean_docs = clean_documents(docs_list, word_counts, dataset)
         corpus_str = '\n'.join(clean_docs)
-        f = open(clean_text_path, 'w')
+        f = open(clean_text_path, 'w', encoding='utf-8')
         f.write(corpus_str)
         f.close()
     f = open(clean_text_path, 'r')
@@ -51,7 +51,7 @@ def clean_data(dataset):
 
 def clean_documents(docs, word_counts, dataset):
     nltk.download('stopwords')
-    stop_words = set(stopwords.words('english'))
+    stop_words = set(stopwords.words('russian'))
     print(stop_words)
     ret = []
     for doc in docs:
@@ -111,6 +111,6 @@ def clean_doc(string, dataset):
 
 if __name__ == "__main__":
 
-    dataset = 'twitter_asian_prejudice_no_hashtag'
-    out = clean_doc('"😷before you wear n95 masks, you should look into getting a fit test. because unlike surgical masks, one size does not fit all for n95 masks. having best fit n95 for your face will ensure a good face seal for protection.  https://t.co/xm2maqsp8w  #HASHTAG HASHTAG_EASTASIA+VIRUS https://t.co/iiszmr3wgc"', dataset)
+    dataset = 'hw'
+    # out = clean_doc('"😷before you wear n95 masks, you should look into getting a fit test. because unlike surgical masks, one size does not fit all for n95 masks. having best fit n95 for your face will ensure a good face seal for protection.  https://t.co/xm2maqsp8w  #HASHTAG HASHTAG_EASTASIA+VIRUS https://t.co/iiszmr3wgc"', dataset)
     clean_data(dataset)

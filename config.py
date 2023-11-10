@@ -43,9 +43,12 @@ elif 'ag' in dataset:
     num_labels = 4
 elif 'r8' in dataset:
     num_labels = 8
+else:
+    num_labels = 5
 
 parser.add_argument('--dataset', default=dataset)
 parser.add_argument('--random_seed', default=3)
+parser.add_argument('--num_labels', default=5)
 
 
 """
