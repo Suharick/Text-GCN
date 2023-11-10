@@ -18,6 +18,7 @@ class TextGNN(nn.Module):
         self.num_layers = num_layers
         self.dropout = dropout
         if pred_type == 'softmax':
+            print(layer_dim_list[-1], num_labels)
             assert layer_dim_list[-1] == num_labels
         elif pred_type == 'mlp':
             dims = self._calc_mlp_dims(layer_dim_list[-1], num_labels)
